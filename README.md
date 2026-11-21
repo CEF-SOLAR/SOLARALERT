@@ -3,7 +3,7 @@
 **Standalone heliophysical observation, probabilistic CME propagation and experimental geo-electrical situational awareness**  
 **Author and project director:** **Carlos Eduardo Francheri** — Geologist; independent SCADA developer specializing in solar photovoltaic applications  
 **Distribution:** Self-contained HTML5/JavaScript · **License:** MIT for original project code; third-party notices retained  
-**Get the application:** [GitHub Releases](https://github.com/CEF-SOLAR/SOLARALERT/releases) · [Release history](CHANGELOG.md)
+**Get the application:** Download the latest versioned `.html` file from the [repository root](https://github.com/CEF-SOLAR/SOLARALERT) · [Version history](CHANGELOG.md)
 
 ![AlertaSolar: heliophysics, Earth response and critical-infrastructure awareness](assets/images/alertasolar-overview.png)
 
@@ -93,7 +93,7 @@ The system offers models and diagnostic displays; **their predictive skill must 
 
 ## Resilience and quick start
 
-1. **Download** a versioned standalone `.html` file from [Releases](https://github.com/CEF-SOLAR/SOLARALERT/releases). The release asset identifies the specific build; this README intentionally does not name a particular version.
+1. **Download** the versioned standalone `.html` file directly from the [repository root](https://github.com/CEF-SOLAR/SOLARALERT). Open the file on GitHub and use **Download raw file** (or **Raw** and save it). Choose the version you want by its filename; this README intentionally does not name a particular version.
 2. **Open locally** in a current Chrome or Edge browser. Select the observation point with the map or geographic coordinates.
 3. **Configure NASA access.** The shared `DEMO_KEY` permits limited testing but has strict rate limits. For routine monitoring, obtain a free personal key at [NASA Open APIs](https://api.nasa.gov/) and enter it in the application's **NASA API KEY** field. Never commit private keys to the repository.
 4. **Start the station** and verify data-source status. Local calculations can use retained information during outages, but **offline operation does not create new satellite observations or deliver network notifications**.
