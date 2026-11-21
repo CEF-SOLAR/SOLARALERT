@@ -1,0 +1,86 @@
+MIT License
+
+Copyright (c) 2026 Carlos Eduardo Francheri
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+==============================================================================
+THIRD-PARTY EMBEDDED LIBRARIES, SCIENTIFIC DATASETS & TELEMETRY NOTICES
+==============================================================================
+
+Because AlertaSolar is distributed as a monolithic, self-contained offline-first
+HTML file, it embeds unmodified copies of third-party open-source libraries that
+retain their original copyrights and permissive licenses:
+
+1. Three.js (r128)
+   Copyright (c) 2010-2021 Three.js authors (https://threejs.org)
+   Licensed under the MIT License.
+
+2. Chart.js (4.4.1) & chartjs-plugin-annotation
+   Copyright (c) Chart.js Contributors (https://www.chartjs.org)
+   Licensed under the MIT License.
+
+3. Leaflet (1.9.4)
+   Copyright (c) 2010-2023, Vladimir Agafonkin; Copyright (c) 2010-2011, CloudMade
+   Licensed under the BSD 2-Clause License.
+
+4. KaTeX (0.16.8)
+   Copyright (c) 2013-2020 Khan Academy and other contributors
+   Code licensed under the MIT License.
+   Embedded math fonts licensed under the SIL Open Font License (OFL) 1.1.
+
+5. Marked (11.1.1)
+   Copyright (c) 2018+, MarkedJS (https://marked.js.org/)
+   Copyright (c) 2011-2018, Christopher Jeffrey
+   Licensed under the MIT License.
+
+6. Tailwind CSS (Standalone)
+   Copyright (c) Tailwind Labs, Inc.
+   Licensed under the MIT License.
+
+7. Font Awesome Free (6.4.0)
+   Copyright (c) Fonticons, Inc. (https://fontawesome.com)
+   Icons licensed under Creative Commons Attribution 4.0 International (CC BY 4.0).
+   Fonts licensed under the SIL Open Font License (OFL) 1.1.
+   CSS/Code licensed under the MIT License.
+
+------------------------------------------------------------------------------
+SCIENTIFIC MODELS & LIVE TELEMETRY DISCLAIMERS
+------------------------------------------------------------------------------
+
+- Embedded 1D Crustal & Lithospheric Grid (CRUST1.0 / LITHO1.0):
+  Derived from open academic models by Laske et al. (2013) and Pasyanos et al.
+  (2014), paired with published rock conductivity priors by Alekseev et al.
+  (2015) and Reynolds (1984).
+
+- U.S. Federal Space Weather Telemetry (NASA DONKI / CDAWeb & NOAA SWPC):
+  Public domain products under 17 U.S.C. § 105. AlertaSolar is an independent
+  open-source engineering project and is not endorsed or certified by NASA or NOAA.
+
+- Ground Magnetometer Networks (INTERMAGNET GIN & NRCan / FDSN):
+  Real-time magnetometer series fetched directly by the end-user's browser
+  remain the intellectual property of INTERMAGNET and participating national
+  geomagnetic institutes, subject to their respective non-commercial usage terms.
+
+- Operational Hazard Disclaimer:
+  AlertaSolar provides dimensionless heuristic susceptibility indices and 1D
+  Wait (1954) surface impedance estimates for situational awareness. It does not
+  output physical induced voltages (V/km) or Geomagnetically Induced Currents
+  in Amperes (A) on power grids or pipelines, and does not replace certified
+  in-situ plant instrumentation.
