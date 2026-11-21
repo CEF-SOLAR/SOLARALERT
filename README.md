@@ -1,5 +1,13 @@
 # AlertaSolar
 
+
+### Run AlertaSolar Online
+
+**[Launch AlertaSolar — Live Application](https://cef-solar.github.io/SOLARALERT/AlertaSolar_V5_EN_5.50.html)**
+
+Run AlertaSolar directly in your browser. No installation required.
+
+
 **Standalone heliophysical observation, probabilistic CME propagation and experimental geo-electrical situational awareness**  
 **Author and project director:** **Carlos Eduardo Francheri** — Geologist; independent SCADA developer specializing in solar photovoltaic applications  
 **Distribution:** Self-contained HTML5/JavaScript · **License:** MIT for original project code; third-party notices retained  
