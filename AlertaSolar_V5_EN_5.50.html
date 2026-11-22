@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="AlertaSolar: heliophysics observation and early warning system integrating satellite data, NOAA/NASA feeds, CME tracking, P-DBM, and regional INTERMAGNET ground observations.">
     <meta name="version" content="5.50">
-    <meta name="build-timestamp" content="2026-11-21T20:27:59Z">
-    <meta name="artifact-sha256" content="b3ee18033f59c0e3b408483744ac2042ea67e6ad8ae647c229958a36f3b0adde">
+    <meta name="build-timestamp" content="2026-11-22T11:14:03Z">
+    <meta name="artifact-sha256" content="c17964e82c5c3c51b9cab96386f47e565add9ab2ccd183185cf651025944d46a">
     <meta name="artifact-sha256-scope" content="SHA-256 of the complete UTF-8 file normalizing only the artifact-sha256 value to 64 zeros">
     <title>AlertaSolar — Heliophysics Observation and Early Warning</title>
 <!--
@@ -3573,13 +3573,13 @@ svg.leaflet-image-layer.leaflet-interactive path {
                     </label>
                     <span id="intermagnet-status-text" class="text-[10px] text-slate-300 font-mono bg-slate-900/80 px-2 py-0.5 rounded border border-slate-700">Awaiting initialization...</span>
                 </h3>
+                <div class="tactical-chart-viewport flex-1 relative w-full h-full min-h-0">
+                    <canvas id="chart-intermagnet" class="w-full h-full"></canvas>
+                </div>
                 <p class="text-[11px] text-amber-100 font-sans mb-1">Magnetometers provide reference observations for the selected observation point. Each curve shows the minute-by-minute variation of the horizontal magnetic field measured at a station. Kilometers indicate the distance from the station to the observation point.</p>
                 <div id="intermagnet-region-badge" class="text-[10px] text-cyan-200 font-mono mb-1 whitespace-normal break-words">Region: pending</div>
                 <div id="intermagnet-station-summary" class="text-[10px] text-slate-400 font-mono mb-1.5 whitespace-normal break-words">Stations will be verified via timestamped X/Y samples.</div>
                 <div id="tactical-7-time-readout" class="text-[10px] text-teal-100 font-mono mb-1 truncate">Observed Earth time · amber line: estimated arrival from L1</div>
-                <div class="tactical-chart-viewport flex-1 relative w-full h-full min-h-0">
-                    <canvas id="chart-intermagnet" class="w-full h-full"></canvas>
-                </div>
             </div>
             <!-- ES5.20: complementary satellite monitor; collapsed on startup. -->
             <details id="goes-electron-panel" class="bg-slate-900/60 border border-sky-800/60 rounded-lg shrink-0 w-full max-w-none" ontoggle="renderGoesElectronTacticalChart()">
@@ -36501,6 +36501,19 @@ const CRUST_LITHO_GRID_BASE64 = Object.freeze({"crustSedimentCentiKm":"lgCWAJYAl
         element.className = `text-[10px] font-mono px-2 py-0.5 rounded border ${tone}`;
     }
 
+    function tactical7EnglishLabel(value) {
+        return String(value ?? "")
+            .replace(/LATITUDES MEDIAS SUR/g, "SOUTH MID-LATITUDES")
+            .replace(/LATITUDES MEDIAS NORTE/g, "NORTH MID-LATITUDES")
+            .replace(/LATITUDES BAJAS SUR/g, "SOUTH LOW LATITUDES")
+            .replace(/LATITUDES BAJAS NORTE/g, "NORTH LOW LATITUDES")
+            .replace(/POLAR SUR/g, "SOUTH POLAR")
+            .replace(/POLAR NORTE/g, "NORTH POLAR")
+            .replace(/°O/g, "°W")
+            .replace(/\bCERCANA\b/g, "NEARBY")
+            .replace(/\bOBSOLETA\b/g, "STALE");
+    }
+
     function renderIntermagnetTactical7(nowEpoch = Date.now()) {
         queueWelcomeMagnetometerUpdate();
         const region = intermagnetRuntimeState.region || locateIntermagnetRegion(userLat, userLon);
@@ -36515,7 +36528,7 @@ const CRUST_LITHO_GRID_BASE64 = Object.freeze({"crustSedimentCentiKm":"lgCWAJYAl
 
         if (regionElement) {
             regionElement.textContent = region
-                ? `${region.id} · ${region.label} · PUNTO ${Number(userLat).toFixed(2)}°, ${normalizeIntermagnetLongitude(userLon).toFixed(2)}°`
+                ? `${region.id} · ${tactical7EnglishLabel(region.label)} · POINT ${Number(userLat).toFixed(2)}°, ${normalizeIntermagnetLongitude(userLon).toFixed(2)}°`
                 : "INVALID COORDINATE";
         }
 
@@ -36546,10 +36559,10 @@ const CRUST_LITHO_GRID_BASE64 = Object.freeze({"crustSedimentCentiKm":"lgCWAJYAl
                     const age = Number.isFinite(item.health.ageMinutes) ? `${Math.round(item.health.ageMinutes)} min` : "time N/A";
                     const type = String(item.entry.dataType || "N/A").toUpperCase();
                     const source = item.entry.source === "NRCAN_FDSN" ? "NRCAN/FDSN" : "INTERMAGNET";
-                    const distanceClass = classifyIntermagnetDistance(item.candidate.distanceKm).label;
+                    const distanceClass = tactical7EnglishLabel(classifyIntermagnetDistance(item.candidate.distanceKm).label);
                     const membership = station.status === "OPEN" ? "" : " · GIN REGISTRY";
-                    const role = item.role === "REFERENCE" ? " · REFERENCE" : item.role.endsWith("_CONTEXT") ? " · CONTEXTO" : "";
-                    return `${station.code} · ${Math.round(item.candidate.distanceKm)} km · ${distanceClass}${role} · ${item.health.label} ${age} · ${type} · ${source}${membership}`;
+                    const role = item.role === "REFERENCE" ? " · REFERENCE" : item.role.endsWith("_CONTEXT") ? " · CONTEXT" : "";
+                    return `${station.code} · ${Math.round(item.candidate.distanceKm)} km · ${distanceClass}${role} · ${tactical7EnglishLabel(item.health.label)} ${age} · ${type} · ${source}${membership}`;
                 }).join("  |  ")
                 : "No valid series among candidate stations. Gaps are not filled.";
         }
