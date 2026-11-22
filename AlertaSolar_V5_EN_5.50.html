@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="AlertaSolar: heliophysics observation and early warning system integrating satellite data, NOAA/NASA feeds, CME tracking, P-DBM, and regional INTERMAGNET ground observations.">
     <meta name="version" content="5.50">
-    <meta name="build-timestamp" content="2026-11-22T11:14:03Z">
-    <meta name="artifact-sha256" content="c17964e82c5c3c51b9cab96386f47e565add9ab2ccd183185cf651025944d46a">
+    <meta name="build-timestamp" content="2026-11-22T14:25:03Z">
+    <meta name="artifact-sha256" content="1950fa9e65c58ee87f1d00ba92a043745af910164af43ab9032ea3426502ea09">
     <meta name="artifact-sha256-scope" content="SHA-256 of the complete UTF-8 file normalizing only the artifact-sha256 value to 64 zeros">
     <title>AlertaSolar — Heliophysics Observation and Early Warning</title>
 <!--
@@ -3480,7 +3480,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
             <div class="bg-slate-900/60 border border-slate-800 rounded-lg tactical-chart-card flex flex-col h-72 md:h-80 shrink-0 relative w-full max-w-none">
                 <h3 class="text-xs font-bold text-gray-300 font-mono mb-2 flex justify-between items-center flex-wrap gap-2">
                     <span class="flex items-center gap-2">
-                        <span>4. Kp PLANETARIO NOAA — OBSERVADO | OFFICIAL FORECAST</span>
+                        <span>4. NOAA PLANETARY Kp — OBSERVED | OFFICIAL FORECAST</span>
                         <button id="tactical-chart-4-info" type="button" class="text-orange-300 hover:text-white bg-orange-950/90 hover:bg-orange-900 border border-orange-600/70 transition-colors w-6 h-6 rounded-full cursor-pointer inline-flex items-center justify-center shrink-0 shadow-sm" onclick="openTacticalChart4InfoHud()" title="Scientific and operational help for Chart 4" aria-label="Open scientific and operational help for Chart 4: Observed Kp and NOAA forecast">
                             <i class="fa-solid fa-info text-[11px]" aria-hidden="true"></i>
                         </button>
@@ -4881,7 +4881,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
             <span>|</span>
             <button id="btn-forzar-fetch" class="hover:text-white text-slate-400 font-bold underline transition"><i class="fa-solid fa-sync"></i> Scan NOAA (1m Interval)</button>
             <span>|</span>
-            <span>LATENCIA NOAA: <strong class="text-cyan-300 font-mono" id="noaa-rtt-indicator">N/A</strong></span>
+            <span>NOAA LATENCY: <strong class="text-cyan-300 font-mono" id="noaa-rtt-indicator">N/A</strong></span>
             <span>|</span>
             <span class="text-slate-400"><i class="fa-solid fa-shield-halved text-cyan-400"></i> SYSTEM ROLE:<strong>HMI ACTS AS READ-ONLY ADVISOR</strong></span>
         </div>
@@ -8449,7 +8449,7 @@ let isOfflineMode = !navigator.onLine;
             if (offlineRtt) offlineRtt.textContent = latencyText;
             const footerRtt = document.getElementById("noaa-rtt-indicator");
             if (footerRtt) {
-                footerRtt.textContent = latencyText;
+                footerRtt.textContent = latencyText.replace(/\bDIRECTO\b/g, "DIRECT");
                 footerRtt.title = noaaLatency
                     ? `Latest NOAA response: ${new Date(noaaLatency.at).toLocaleString("en-US")} · ${noaaLatency.endpoint || "unidentified endpoint"}`
                     : "No NOAA response measured yet";
